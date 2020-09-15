@@ -17,17 +17,33 @@ class MoviesController < ApplicationController
     # # elsif params[:sort] == 'date'
     # #       @movies = Movie.order('release_date')
     if params[:sort]
-          @movies = Movie.all.order(params[:sort])
+        session[:sort] = params[:sort]
+        @movies = Movie.all.order(params[:sort])
+    elsif session[:sort]
+        @movies = Movie.all.order(session[:sort])
     else
-          @movies = Movie.all
+        @movies = Movie.all
     end
     @all_ratings = Movie.all_ratings
     if params[:ratings]
           @selected_ratings = params[:ratings].keys
+          # @selected_ratings = params[:ratings].keys
+          session[:ratings] = params[:ratings]
+          @selected_ratings = session[:ratings].keys
+    elsif session[:ratings]
+          @selected_ratings = session[:ratings].keys
     else
           @selected_ratings = @all_ratings
     end
     @movies = @movies.where(:rating => @selected_ratings)
+    # if params[:sort]
+    #     session[:sort] = params[:sort]
+    #     @movies = Movie.all.order(params[:sort])
+    # elsif session[:sort]
+    #     @movies = Movie.all.order(session[:sort])
+    # else
+    #     @movies = Movie.all
+    # end
     # if params[:sort]
     #       @movies = Movie.all.order(params[:sort])
     # else
