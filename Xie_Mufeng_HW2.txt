@@ -1,0 +1,6 @@
+Manually visit
+ ▸    http://afternoon-journey-70702.herokuapp.com/ in your
+ ▸    browser.
+ 
+ URL:
+ https://github.com/TorchXMF/rottenpotatoes-rails-intro
